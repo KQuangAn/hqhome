@@ -9,13 +9,19 @@ export const metadata = {
   title: `Order Details - ${APP_NAME}`,
 }
 
-const OrderDetailsPage = async ({
-  params: { id },
-}: {
-  params: {
-    id: string
+const OrderDetailsPage = async (
+  props: {
+    params: Promise<{
+      id: string
+    }>
   }
-}) => {
+) => {
+  const params = await props.params;
+
+  const {
+    id
+  } = params;
+
   const session = await auth()
   const order = await getOrderById(id)
   if (!order) notFound()

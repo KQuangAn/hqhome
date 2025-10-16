@@ -10,13 +10,19 @@ export const metadata: Metadata = {
   title: `Update user - ${APP_NAME}`,
 }
 
-export default async function UpdateUserPage({
-  params: { id },
-}: {
-  params: {
-    id: string
+export default async function UpdateUserPage(
+  props: {
+    params: Promise<{
+      id: string
+    }>
   }
-}) {
+) {
+  const params = await props.params;
+
+  const {
+    id
+  } = params;
+
   const user = await getUserById(id)
   if (!user) notFound()
   return (

@@ -9,13 +9,19 @@ export const metadata: Metadata = {
   title: `Update product - ${APP_NAME}`,
 }
 
-export default async function UpdateProductPage({
-  params: { id },
-}: {
-  params: {
-    id: string
+export default async function UpdateProductPage(
+  props: {
+    params: Promise<{
+      id: string
+    }>
   }
-}) {
+) {
+  const params = await props.params;
+
+  const {
+    id
+  } = params;
+
   const product = await getProductById(id)
   if (!product) notFound()
   return (

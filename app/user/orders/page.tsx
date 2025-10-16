@@ -16,11 +16,12 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: `My Orders - ${APP_NAME}`,
 }
-export default async function OrdersPage({
-  searchParams,
-}: {
-  searchParams: { page: string }
-}) {
+export default async function OrdersPage(
+  props: {
+    searchParams: Promise<{ page: string }>
+  }
+) {
+  const searchParams = await props.searchParams;
   const page = Number(searchParams.page) || 1
   const orders = await getMyOrders({
     page,

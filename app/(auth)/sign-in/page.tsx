@@ -22,13 +22,19 @@ export const metadata: Metadata = {
   title: `Sign In - ${APP_NAME}`,
 }
 
-export default async function SignIn({
-  searchParams: { callbackUrl },
-}: {
-  searchParams: {
-    callbackUrl: string
+export default async function SignIn(
+  props: {
+    searchParams: Promise<{
+      callbackUrl: string
+    }>
   }
-}) {
+) {
+  const searchParams = await props.searchParams;
+
+  const {
+    callbackUrl
+  } = searchParams;
+
   const session = await auth()
   if (session) {
     return redirect(callbackUrl || '/')

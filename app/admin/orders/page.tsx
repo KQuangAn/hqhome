@@ -20,11 +20,17 @@ export const metadata: Metadata = {
   title: `Admin Orders - ${APP_NAME}`,
 }
 
-export default async function OrdersPage({
-  searchParams: { page = '1' },
-}: {
-  searchParams: { page: string }
-}) {
+export default async function OrdersPage(
+  props: {
+    searchParams: Promise<{ page: string }>
+  }
+) {
+  const searchParams = await props.searchParams;
+
+  const {
+    page = '1'
+  } = searchParams;
+
   const session = await auth()
   if (session?.user.role !== 'admin')
     throw new Error('admin permission required')

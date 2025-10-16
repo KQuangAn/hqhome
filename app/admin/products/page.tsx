@@ -19,15 +19,16 @@ export const metadata: Metadata = {
   title: `Admin Products - ${APP_NAME}`,
 }
 
-export default async function AdminProductsPage({
-  searchParams,
-}: {
-  searchParams: {
-    page: string
-    query: string
-    category: string
+export default async function AdminProductsPage(
+  props: {
+    searchParams: Promise<{
+      page: string
+      query: string
+      category: string
+    }>
   }
-}) {
+) {
+  const searchParams = await props.searchParams;
   const page = Number(searchParams.page) || 1
   const searchText = searchParams.query || ''
   const category = searchParams.category || ''

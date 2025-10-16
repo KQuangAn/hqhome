@@ -78,7 +78,7 @@ export const config = {
 
         token.role = user.role
         if (trigger === 'signIn' || trigger === 'signUp') {
-          const sessionCartId = cookies().get('sessionCartId')?.value
+          const sessionCartId = (await cookies()).get('sessionCartId')?.value
           if (!sessionCartId) throw new Error('Session Cart Not Found')
           const sessionCartExists = await db.query.carts.findFirst({
             where: eq(carts.sessionCartId, sessionCartId),
@@ -88,8 +88,8 @@ export const config = {
               where: eq(carts.userId, user.id),
             })
             if (userCartExists) {
-              cookies().set('beforeSigninSessionCartId', sessionCartId)
-              cookies().set('sessionCartId', userCartExists.sessionCartId)
+              (await cookies()).set('beforeSigninSessionCartId', sessionCartId)
+              (await cookies()).set('sessionCartId', userCartExists.sessionCartId)
             } else {
               db.update(carts)
                 .set({ userId: user.id })

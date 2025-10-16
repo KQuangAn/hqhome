@@ -1,9 +1,8 @@
-import { withUt } from 'uploadthing/tw'
-import type { Config } from 'tailwindcss'
-import { fontFamily } from 'tailwindcss/defaultTheme'
+import { withUt } from 'uploadthing/tw';
+import type { Config } from 'tailwindcss';
 
 const config = withUt({
-  darkMode: ['class'],
+  darkMode: ['class', ''],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -20,9 +19,6 @@ const config = withUt({
       },
     },
     extend: {
-      fontFamily: {
-        sans: ['var(--font-sans)', ...fontFamily.sans],
-      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -80,6 +76,6 @@ const config = withUt({
     },
   },
   plugins: [require('tailwindcss-animate')],
-}) satisfies Config
+}) satisfies Config;
 
-export default config
+export default config;

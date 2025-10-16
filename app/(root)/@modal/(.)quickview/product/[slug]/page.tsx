@@ -9,9 +9,9 @@ import { notFound } from 'next/navigation'
 import ReloadButton from './reload-button'
 
 export default async function StorefrontProductQuickView(props: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const product = await getProductBySlug(props.params.slug)
+  const product = await getProductBySlug((await props.params).slug)
   if (!product) return notFound()
   const cart = await getMyCart()
   return (

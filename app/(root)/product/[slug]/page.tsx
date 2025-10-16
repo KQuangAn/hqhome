@@ -13,11 +13,12 @@ import ReviewList from './review-list'
 import { auth } from '@/auth'
 import Rating from '@/components/shared/product/rating'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
-}) {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>
+  }
+) {
+  const params = await props.params;
   const product = await getProductBySlug(params.slug)
   if (!product) {
     return { title: 'Product not found' }
@@ -28,12 +29,18 @@ export async function generateMetadata({
   }
 }
 
-const ProductDetails = async ({
-  params: { slug },
-}: {
-  params: { slug: string }
-  searchParams: { page: string; color: string; size: string }
-}) => {
+const ProductDetails = async (
+  props: {
+    params: Promise<{ slug: string }>
+    searchParams: Promise<{ page: string; color: string; size: string }>
+  }
+) => {
+  const params = await props.params;
+
+  const {
+    slug
+  } = params;
+
   const product = await getProductBySlug(slug)
   if (!product) notFound()
   const cart = await getMyCart()

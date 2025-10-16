@@ -13,15 +13,21 @@ export const metadata: Metadata = {
   title: `Stripe Payment Success - ${APP_NAME}`,
 }
 
-export default async function SuccessPage({
-  searchParams,
-  params: { id },
-}: {
-  params: {
-    id: string
+export default async function SuccessPage(
+  props: {
+    params: Promise<{
+      id: string
+    }>
+    searchParams: Promise<{ payment_intent: string }>
   }
-  searchParams: { payment_intent: string }
-}) {
+) {
+  const params = await props.params;
+
+  const {
+    id
+  } = params;
+
+  const searchParams = await props.searchParams;
   const order = await getOrderById(id)
   if (!order) notFound()
 
