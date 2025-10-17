@@ -16,4 +16,10 @@ export default defineConfig([
   {
     extends: compat.extends('eslint:recommended', 'next/core-web-vitals'),
   },
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+  },
+  {
+    ignores: ['node_modules', 'dist', 'build', 'out', '.next'],
+  },
 ]);

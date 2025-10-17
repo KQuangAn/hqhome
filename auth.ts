@@ -1,17 +1,17 @@
-import { DrizzleAdapter } from '@auth/drizzle-adapter'
-import { compareSync } from 'bcrypt-ts-edge'
-import { eq } from 'drizzle-orm'
-import type { NextAuthConfig } from 'next-auth'
-import NextAuth from 'next-auth'
-import CredentialsProvider from 'next-auth/providers/credentials'
-import Resend from 'next-auth/providers/resend'
-import Google from 'next-auth/providers/google'
+import { DrizzleAdapter } from '@auth/drizzle-adapter';
+import { compareSync } from 'bcrypt-ts-edge';
+import { eq } from 'drizzle-orm';
+import type { NextAuthConfig } from 'next-auth';
+import NextAuth from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import Resend from 'next-auth/providers/resend';
+import Google from 'next-auth/providers/google';
 
-import db from './db/drizzle'
-import { carts, users } from './db/schema'
-import { cookies } from 'next/headers'
-import { NextResponse } from 'next/server'
-import { APP_NAME, SENDER_EMAIL } from './lib/constants'
+import db from './db/drizzle';
+import { carts, users } from './db/schema';
+import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
+import { APP_NAME, SENDER_EMAIL } from './lib/constants';
 
 export const config = {
   pages: {
@@ -32,26 +32,26 @@ export const config = {
         password: { type: 'password' },
       },
       async authorize(credentials) {
-        if (credentials == null) return null
+        if (credentials == null) return null;
 
         const user = await db.query.users.findFirst({
           where: eq(users.email, credentials.email as string),
-        })
+        });
         if (user && user.password) {
           const isMatch = compareSync(
             credentials.password as string,
             user.password
-          )
+          );
           if (isMatch) {
             return {
               id: user.id,
               name: user.name,
               email: user.email,
               role: user.role,
-            }
+            };
           }
         }
-        return null
+        return null;
       },
     }),
     Resend({
@@ -67,51 +67,52 @@ export const config = {
     jwt: async ({ token, user, trigger, session }: any) => {
       if (user) {
         if (user.name === 'NO_NAME') {
-          token.name = user.email!.split('@')[0]
+          token.name = user.email!.split('@')[0];
           await db
             .update(users)
             .set({
               name: token.name,
             })
-            .where(eq(users.id, user.id))
+            .where(eq(users.id, user.id));
         }
 
-        token.role = user.role
+        token.role = user.role;
         if (trigger === 'signIn' || trigger === 'signUp') {
-          const sessionCartId = (await cookies()).get('sessionCartId')?.value
-          if (!sessionCartId) throw new Error('Session Cart Not Found')
+          const sessionCartId = (await cookies()).get('sessionCartId')?.value;
+          if (!sessionCartId) throw new Error('Session Cart Not Found');
           const sessionCartExists = await db.query.carts.findFirst({
             where: eq(carts.sessionCartId, sessionCartId),
-          })
+          });
           if (sessionCartExists && !sessionCartExists.userId) {
             const userCartExists = await db.query.carts.findFirst({
               where: eq(carts.userId, user.id),
-            })
+            });
             if (userCartExists) {
-              (await cookies()).set('beforeSigninSessionCartId', sessionCartId)
-              (await cookies()).set('sessionCartId', userCartExists.sessionCartId)
+              const cookieStore = await cookies();
+              cookieStore.set('beforeSigninSessionCartId', sessionCartId);
+              cookieStore.set('sessionCartId', userCartExists.sessionCartId);
             } else {
               db.update(carts)
                 .set({ userId: user.id })
-                .where(eq(carts.id, sessionCartExists.id))
+                .where(eq(carts.id, sessionCartExists.id));
             }
           }
         }
       }
 
       if (session?.user.name && trigger === 'update') {
-        token.name = session.user.name
+        token.name = session.user.name;
       }
 
-      return token
+      return token;
     },
     session: async ({ session, user, trigger, token }: any) => {
-      session.user.id = token.sub
-      session.user.role = token.role
+      session.user.id = token.sub;
+      session.user.role = token.role;
       if (trigger === 'update') {
-        session.user.name = user.name
+        session.user.name = user.name;
       }
-      return session
+      return session;
     },
     authorized({ request, auth }: any) {
       const protectedPaths = [
@@ -122,23 +123,23 @@ export const config = {
         /\/user\/(.*)/,
         /\/order\/(.*)/,
         /\/admin/,
-      ]
-      const { pathname } = request.nextUrl
-      if (!auth && protectedPaths.some((p) => p.test(pathname))) return false
+      ];
+      const { pathname } = request.nextUrl;
+      if (!auth && protectedPaths.some((p) => p.test(pathname))) return false;
       if (!request.cookies.get('sessionCartId')) {
-        const sessionCartId = crypto.randomUUID()
-        const newRequestHeaders = new Headers(request.headers)
+        const sessionCartId = crypto.randomUUID();
+        const newRequestHeaders = new Headers(request.headers);
         const response = NextResponse.next({
           request: {
             headers: newRequestHeaders,
           },
-        })
-        response.cookies.set('sessionCartId', sessionCartId)
-        return response
+        });
+        response.cookies.set('sessionCartId', sessionCartId);
+        return response;
       } else {
-        return true
+        return true;
       }
     },
   },
-} satisfies NextAuthConfig
-export const { handlers, auth, signIn, signOut } = NextAuth(config)
+} satisfies NextAuthConfig;
+export const { handlers, auth, signIn, signOut } = NextAuth(config);

@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import Rating from '@/components/shared/product/rating'
-import { Button } from '@/components/ui/button'
+import Rating from '@/components/shared/product/rating';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
+} from '@/components/ui/card';
 import {
   Dialog,
   DialogContent,
@@ -16,7 +16,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
+} from '@/components/ui/dialog';
 import {
   Form,
   FormControl,
@@ -24,109 +24,109 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { Textarea } from '@/components/ui/textarea'
-import { useToast } from '@/components/ui/use-toast'
+} from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/components/ui/use-toast';
 import {
   createUpdateReview,
   getReviews,
   getUserReviewByProductId,
-} from '@/lib/actions/review.actions'
-import { reviewFormDefaultValues } from '@/lib/constants'
-import { formatDateTime } from '@/lib/utils'
-import { insertReviewSchema } from '@/lib/validator'
-import { Review } from '@/types'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Calendar, Check, StarIcon, User } from 'lucide-react'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useInView } from 'react-intersection-observer'
-import { z } from 'zod'
+} from '@/lib/actions/review.actions';
+import { reviewFormDefaultValues } from '@/lib/constants';
+import { formatDateTime } from '@/lib/utils';
+import { insertReviewSchema } from '@/lib/validator';
+import { Review } from '@/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Calendar, Check, StarIcon, User } from 'lucide-react';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useInView } from 'react-intersection-observer';
+import { z } from 'zod';
 
 export default function ReviewList({
   userId,
   productId,
   productSlug,
 }: {
-  userId: string
-  productId: string
-  productSlug: string
+  userId: string;
+  productId: string;
+  productSlug: string;
 }) {
-  const [page, setPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(0)
-  const [reviews, setReviews] = useState<Review[]>([])
-  const { ref, inView } = useInView()
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const { ref, inView } = useInView();
   const reload = async () => {
     try {
-      const res = await getReviews({ productId, page: 1 })
-      setReviews([...res.data])
-      setTotalPages(res.totalPages)
+      const res = await getReviews({ productId, page: 1 });
+      setReviews([...res.data]);
+      setTotalPages(res.totalPages);
     } catch (err) {
       toast({
         variant: 'destructive',
-        description: 'Error in fetching reviews',
-      })
+        description: 'Error in fetching reviews' + (err as Error).message,
+      });
     }
-  }
+  };
   useEffect(() => {
     const loadMoreReviews = async () => {
-      if (page === totalPages) return
-      const res = await getReviews({ productId, page })
-      setReviews([...reviews, ...res.data])
-      setTotalPages(res.totalPages)
+      if (page === totalPages) return;
+      const res = await getReviews({ productId, page });
+      setReviews([...reviews, ...res.data]);
+      setTotalPages(res.totalPages);
       if (page < res.totalPages) {
-        setPage(page + 1)
+        setPage(page + 1);
       }
-    }
+    };
     if (inView) {
-      loadMoreReviews()
+      loadMoreReviews();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView])
+  }, [inView]);
 
-  type CustomerReview = z.infer<typeof insertReviewSchema>
+  type CustomerReview = z.infer<typeof insertReviewSchema>;
 
   const form = useForm<CustomerReview>({
     resolver: zodResolver(insertReviewSchema),
     defaultValues: reviewFormDefaultValues,
-  })
-  const [open, setOpen] = useState(false)
-  const { toast } = useToast()
+  });
+  const [open, setOpen] = useState(false);
+  const { toast } = useToast();
 
   const onSubmit: SubmitHandler<CustomerReview> = async (values) => {
-    const res = await createUpdateReview({ ...values, productId })
+    const res = await createUpdateReview({ ...values, productId });
     if (!res.success)
       return toast({
         variant: 'destructive',
         description: res.message,
-      })
-    setOpen(false)
-    reload()
+      });
+    setOpen(false);
+    reload();
     toast({
       description: res.message,
-    })
-  }
+    });
+  };
 
   const handleOpenForm = async () => {
-    form.setValue('productId', productId)
-    form.setValue('userId', userId)
-    const review = await getUserReviewByProductId({ productId })
+    form.setValue('productId', productId);
+    form.setValue('userId', userId);
+    const review = await getUserReviewByProductId({ productId });
     if (review) {
-      form.setValue('title', review.title)
-      form.setValue('description', review.description)
-      form.setValue('rating', review.rating)
+      form.setValue('title', review.title);
+      form.setValue('description', review.description);
+      form.setValue('rating', review.rating);
     }
-    setOpen(true)
-  }
+    setOpen(true);
+  };
 
   return (
     <div className="space-y-4">
@@ -272,5 +272,5 @@ export default function ReviewList({
         <div ref={ref}>{page < totalPages && 'Loading...'}</div>
       </div>
     </div>
-  )
+  );
 }
