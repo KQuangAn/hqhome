@@ -187,7 +187,9 @@ export default function ReviewList({
                         <FormItem>
                           <FormLabel>Rating</FormLabel>
                           <Select
-                            onValueChange={field.onChange}
+                            onValueChange={(value) =>
+                              field.onChange(Number(value))
+                            }
                             value={field.value.toString()}
                           >
                             <FormControl>

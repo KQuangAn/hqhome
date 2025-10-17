@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import slugify from 'slugify'
+import slugify from 'slugify';
 import {
   Form,
   FormControl,
@@ -8,80 +8,89 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { useToast } from '@/components/ui/use-toast'
-import { createProduct, updateProduct } from '@/lib/actions/product.actions'
-import { productDefaultValues } from '@/lib/constants'
-import { insertProductSchema, updateProductSchema } from '@/lib/validator'
-import { Product } from '@/types'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { Card, CardContent } from '@/components/ui/card'
-import Image from 'next/image'
-import { UploadButton } from '@/lib/uploadthing'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Textarea } from '@/components/ui/textarea'
-import { Button } from '@/components/ui/button'
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { useToast } from '@/components/ui/use-toast';
+import { createProduct, updateProduct } from '@/lib/actions/product.actions';
+import { productDefaultValues } from '@/lib/constants';
+import {
+  insertProductSchema,
+  TInsertProduct,
+  updateProductSchema,
+  TUpdateProduct,
+} from '@/lib/validator';
+import { Product } from '@/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { Card, CardContent } from '@/components/ui/card';
+import Image from 'next/image';
+import { UploadButton } from '@/lib/uploadthing';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
 
 export default function ProductForm({
   type,
   product,
   productId,
 }: {
-  type: 'Create' | 'Update'
-  product?: Product
-  productId?: string
+  type: 'Create' | 'Update';
+  product?: Product;
+  productId?: string;
 }) {
-  const router = useRouter()
+  const router = useRouter();
 
-  const form = useForm<z.infer<typeof insertProductSchema>>({
+  const form = useForm<TUpdateProduct | TInsertProduct>({
     resolver:
       type === 'Update'
-        ? zodResolver(updateProductSchema)
-        : zodResolver(insertProductSchema),
+        ? (zodResolver(updateProductSchema) as any) //@ts-ignore
+        : (zodResolver(insertProductSchema) as any), //@ts-ignore
     defaultValues:
-      product && type === 'Update' ? product : productDefaultValues,
-  })
+      type === 'Update'
+        ? (product as TUpdateProduct)
+        : (productDefaultValues as TInsertProduct),
+  });
 
-  const { toast } = useToast()
+  const { toast } = useToast();
 
-  async function onSubmit(values: z.infer<typeof insertProductSchema>) {
+  async function onSubmit(values: TInsertProduct | TUpdateProduct) {
     if (type === 'Create') {
-      const res = await createProduct(values)
+      const res = await createProduct(values);
       if (!res.success) {
         toast({
           variant: 'destructive',
           description: res.message,
-        })
+        });
       } else {
         toast({
           description: res.message,
-        })
-        router.push(`/admin/products`)
+        });
+        router.push(`/admin/products`);
       }
     }
     if (type === 'Update') {
       if (!productId) {
-        router.push(`/admin/products`)
-        return
+        router.push(`/admin/products`);
+        return;
       }
-      const res = await updateProduct({ ...values, id: productId })
+      // For update, values will have the id from the form
+      const updateValues =
+        'id' in values ? values : { ...values, id: productId };
+      const res = await updateProduct(updateValues);
       if (!res.success) {
         toast({
           variant: 'destructive',
           description: res.message,
-        })
+        });
       } else {
-        router.push(`/admin/products`)
+        router.push(`/admin/products`);
       }
     }
   }
-  const images = form.watch('images')
-  const isFeatured = form.watch('isFeatured')
-  const banner = form.watch('banner')
+  const images = form.watch('images');
+  const isFeatured = form.watch('isFeatured');
+  const banner = form.watch('banner');
   return (
     <Form {...form}>
       <form
@@ -125,7 +134,7 @@ export default function ProductForm({
                         form.setValue(
                           'slug',
                           slugify(form.getValues('name'), { lower: true })
-                        )
+                        );
                       }}
                     >
                       Generate
@@ -225,13 +234,13 @@ export default function ProductForm({
                         <UploadButton
                           endpoint="imageUploader"
                           onClientUploadComplete={(res: any) => {
-                            form.setValue('images', [...images, res[0].url])
+                            form.setValue('images', [...images, res[0].url]);
                           }}
                           onUploadError={(error: Error) => {
                             toast({
                               variant: 'destructive',
                               description: `ERROR! ${error.message}`,
-                            })
+                            });
                           }}
                         />
                       </FormControl>
@@ -276,13 +285,13 @@ export default function ProductForm({
                 <UploadButton
                   endpoint="imageUploader"
                   onClientUploadComplete={(res) => {
-                    form.setValue('banner', res[0].url)
+                    form.setValue('banner', res[0].url);
                   }}
                   onUploadError={(error: Error) => {
                     toast({
                       variant: 'destructive',
                       description: `ERROR! ${error.message}`,
-                    })
+                    });
                   }}
                 />
               )}
@@ -320,5 +329,5 @@ export default function ProductForm({
         </div>
       </form>
     </Form>
-  )
+  );
 }
