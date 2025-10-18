@@ -37,8 +37,8 @@ export default async function PlaceOrderPage() {
       <CheckoutSteps current={3} />
       <h1 className="py-4 text-2xl">Place Order</h1>
 
-      <div className="grid md:grid-cols-3 md:gap-5">
-        <div className="overflow-x-auto md:col-span-2 space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div className="lg:col-span-2 space-y-4">
           <Card>
             <CardContent className="p-4 gap-4">
               <h2 className="text-xl pb-4">Shipping Address</h2>

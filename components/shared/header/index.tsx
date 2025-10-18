@@ -11,19 +11,20 @@ const Header = async () => {
   return (
     <header className="w-full border-b">
       <div className="wrapper flex items-center justify-between py-3">
-        {/* Left Section: Logo + Search */}
-        <div className="flex items-center gap-4 flex-1">
-          <Link href="/" className="flex items-center gap-2">
+        {/* Left Section: Logo */}
+        <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
+          <Link href="/" className="flex items-center gap-2 min-w-0">
             <Image
               src="/assets/icons/logo.svg"
-              width={48}
-              height={48}
+              width={40}
+              height={40}
               alt={`${APP_NAME} logo`}
+              className="sm:w-12 sm:h-12"
             />
-            <span className="font-bold text-lg">{APP_NAME}</span>
+            <span className="font-bold text-base sm:text-lg truncate">{APP_NAME}</span>
           </Link>
 
-          <div className="hidden md:block flex-1 max-w-md">
+          <div className="hidden lg:block flex-1 max-w-md ml-4">
             <Search categories={categories} />
           </div>
         </div>
@@ -33,7 +34,7 @@ const Header = async () => {
       </div>
 
       {/* Mobile Search */}
-      <div className="md:hidden block px-5 pb-2">
+      <div className="lg:hidden block px-5 pb-2">
         <Search categories={categories} />
       </div>
     </header>

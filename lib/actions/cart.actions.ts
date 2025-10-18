@@ -136,3 +136,42 @@ export const removeItemFromCart = async (productId: string) => {
     return { success: false, message: formatError(error) }
   }
 }
+
+export const deleteItemFromCart = async (productId: string) => {
+  try {
+    const sessionCartId = (await cookies()).get('sessionCartId')?.value
+    if (!sessionCartId) throw new Error('Cart Session not found')
+
+    const product = await db.query.products.findFirst({
+      where: eq(products.id, productId),
+    })
+    if (!product) throw new Error('Product not found')
+
+    const cart = await getMyCart()
+    if (!cart) throw new Error('Cart not found')
+
+    const exist = cart.items.find((x) => x.productId === productId)
+    if (!exist) throw new Error('Item not found')
+
+    // Completely remove the item from cart
+    cart.items = cart.items.filter((x) => x.productId !== productId)
+    
+    await db
+      .update(carts)
+      .set({
+        items: cart.items,
+        ...calcPrice(cart.items),
+      })
+      .where(eq(carts.id, cart.id))
+    
+    revalidatePath(`/product/${product.id}`)
+    revalidatePath('/cart')
+    
+    return {
+      success: true,
+      message: `${product.name} removed from cart successfully`,
+    }
+  } catch (error) {
+    return { success: false, message: formatError(error) }
+  }
+}

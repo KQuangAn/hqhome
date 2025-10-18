@@ -29,7 +29,7 @@ export default function CategoryBanner() {
   const { t } = useLocale()
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {categories.map((category) => (
         <Link
           key={category.id}
@@ -49,7 +49,7 @@ export default function CategoryBanner() {
           
           {/* Text */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <h3 className="text-white text-xl md:text-2xl font-bold text-center px-4">
+            <h3 className="text-white text-lg sm:text-xl lg:text-2xl font-bold text-center px-4">
               {t(category.titleKey)}
             </h3>
           </div>
