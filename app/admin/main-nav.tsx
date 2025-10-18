@@ -23,16 +23,20 @@ export default function MainNav({
       href: '/admin/products',
     },
     {
+      title: t('admin.categories'),
+      href: '/admin/categories',
+    },
+    {
+      title: t('admin.brands'),
+      href: '/admin/brands',
+    },
+    {
       title: t('admin.orders'),
       href: '/admin/orders',
     },
     {
       title: t('admin.users'),
       href: '/admin/users',
-    },
-    {
-      title: t('admin.settings'),
-      href: '/admin/settings',
     },
   ]
   

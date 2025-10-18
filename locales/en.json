@@ -175,6 +175,8 @@
     "admin_dashboard": "Admin Dashboard",
     "overview": "Overview",
     "products": "Products",
+    "categories": "Categories",
+    "brands": "Brands",
     "orders": "Orders",
     "users": "Users",
     "settings": "Settings",

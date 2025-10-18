@@ -29,15 +29,20 @@ import { UploadButton } from '@/lib/uploadthing';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function ProductForm({
   type,
   product,
   productId,
+  categories = [],
+  brands = [],
 }: {
   type: 'Create' | 'Update';
   product?: Product;
   productId?: string;
+  categories?: Array<{ id: string; name: string; slug: string }>;
+  brands?: Array<{ id: string; name: string; slug: string }>;
 }) {
   const router = useRouter();
 
@@ -156,10 +161,22 @@ export default function ProductForm({
             name="categoryId"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Category ID</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter category ID (UUID)" {...field} value={field.value || ''} />
-                </FormControl>
+                <FormLabel>Category</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value || ''}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a category" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="">No Category</SelectItem>
+                    {categories.map((category) => (
+                      <SelectItem key={category.id} value={category.id}>
+                        {category.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
@@ -168,13 +185,24 @@ export default function ProductForm({
           <FormField
             control={form.control}
             name="brandId"
-            render={({ field }: { field: any }) => (
+            render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Brand ID</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter brand ID (UUID)" {...field} value={field.value || ''} />
-                </FormControl>
-
+                <FormLabel>Brand</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value || ''}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a brand" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="">No Brand</SelectItem>
+                    {brands.map((brand) => (
+                      <SelectItem key={brand.id} value={brand.id}>
+                        {brand.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
