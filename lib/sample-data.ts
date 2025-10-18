@@ -62,7 +62,6 @@ const sampleData = {
       sku: 'VIG-GR-6060-001',
       images: ['/assets/images/p1-1.jpeg', '/assets/images/p1-2.jpeg'],
       price: '299000',
-      basePrice: '329000',
       discountPrice: '284000',
       stock: 500,
       description:
@@ -89,7 +88,6 @@ const sampleData = {
       sku: 'TOTO-BC-CS769DW5',
       images: ['/assets/images/p2-1.jpeg', '/assets/images/p2-2.jpeg'],
       price: '4500000',
-      basePrice: '5000000',
       discountPrice: '4275000',
       stock: 50,
       description:
@@ -116,7 +114,6 @@ const sampleData = {
       sku: 'INAX-CRB-IF6800SV',
       images: ['/assets/images/p3-1.jpeg', '/assets/images/p3-2.jpeg'],
       price: '1850000',
-      basePrice: '2100000',
       discountPrice: '1757500',
       stock: 30,
       description:
@@ -137,7 +134,6 @@ const sampleData = {
       sku: 'AMST-VL-CF3701',
       images: ['/assets/images/p4-1.jpeg', '/assets/images/p4-2.jpeg'],
       price: '2100000',
-      basePrice: '2300000',
       discountPrice: '1995000',
       stock: 100,
       description:
@@ -161,7 +157,6 @@ const sampleData = {
       sku: 'COTTO-GOT-3060-001',
       images: ['/assets/images/p1-1.jpeg', '/assets/images/p1-2.jpeg'],
       price: '180000',
-      basePrice: '200000',
       discountPrice: '171000',
       stock: 800,
       description:
@@ -186,7 +181,6 @@ const sampleData = {
       sku: 'TOTO-ST-TX492SV',
       images: ['/assets/images/p2-1.jpeg', '/assets/images/p2-2.jpeg'],
       price: '3200000',
-      basePrice: '3500000',
       discountPrice: '3040000',
       stock: 45,
       description:
@@ -210,7 +204,6 @@ const sampleData = {
       sku: 'INAX-BT-IHB330',
       images: ['/assets/images/p3-1.jpeg', '/assets/images/p3-2.jpeg'],
       price: '5500000',
-      basePrice: '6000000',
       discountPrice: '5225000',
       stock: 25,
       description:

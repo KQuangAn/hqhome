@@ -136,7 +136,6 @@ export const products = pgTable(
     description: text('description').notNull(),
     stock: integer('stock').notNull(),
     price: numeric('price', { precision: 12, scale: 2 }).notNull().default('0'),
-    basePrice: numeric('baseprice', { precision: 12, scale: 2 }),
     discountPrice: numeric('discountprice', { precision: 12, scale: 2 }),
     isFeatured: boolean('isFeatured').default(false).notNull(),
     banner: text('banner'),

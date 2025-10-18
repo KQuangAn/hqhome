@@ -46,7 +46,6 @@ export const productDefaultValues = {
   images: [],
   description: '',
   price: '0',
-  basePrice: null,
   discountPrice: null,
   stock: 0,
   isFeatured: false,

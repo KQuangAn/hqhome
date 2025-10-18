@@ -18,7 +18,6 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { t } = useLocale();
 
   // Use database pricing fields
-  const basePrice = product.basePrice ? Number(product.basePrice) : null;
   const discountPrice = product.discountPrice
     ? Number(product.discountPrice)
     : null;
@@ -26,8 +25,8 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   // Calculate discount percentage dynamically
   const discountPercentage =
-    basePrice && discountPrice && discountPrice < basePrice
-      ? Math.round(((basePrice - discountPrice) / basePrice) * 100)
+    discountPrice && discountPrice < currentPrice
+      ? Math.round(((currentPrice - discountPrice) / currentPrice) * 100)
       : 0;
 
   const rightBanner =
@@ -80,19 +79,12 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="p-4 space-y-3">
         {/* Price Section */}
         <div className="space-y-1">
-          {/* Base Price (only show if there's a discount) */}
-          {basePrice && discountPrice && discountPrice < basePrice && (
-            <p className="text-sm text-gray-400 line-through">
-              {t("product.original_price")}: {formatCurrency(basePrice)}/m²
-            </p>
-          )}
-
           {/* Current Price */}
           <p className="text-lg font-bold text-black">
             {formatCurrency(currentPrice)}/m²
           </p>
 
-          {/* Discount Price (only show if it's different from current price and less than base price) */}
+          {/* Discount Price (only show if it's different from current price) */}
           {discountPrice && discountPrice < currentPrice && (
             <p className="text-sm text-gray-500">
               {t("product.member_discount")} {formatCurrency(discountPrice)}/m²

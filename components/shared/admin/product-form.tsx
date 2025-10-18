@@ -186,9 +186,9 @@ export default function ProductForm({
             name="price"
             render={({ field }: { field: any }) => (
               <FormItem className="w-full">
-                <FormLabel>Current Price</FormLabel>
+                <FormLabel>Price</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter current price" {...field} />
+                  <Input placeholder="Enter product price" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -214,23 +214,6 @@ export default function ProductForm({
         </div>
 
         <div className="flex flex-col gap-5 md:flex-row">
-          <FormField
-            control={form.control}
-            name="basePrice"
-            render={({ field }: { field: any }) => (
-              <FormItem className="w-full">
-                <FormLabel>Base Price (Original Price)</FormLabel>
-                <FormControl>
-                  <Input 
-                    type="number"
-                    placeholder="Enter base price (optional)" 
-                    {...field} 
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <FormField
             control={form.control}
             name="discountPrice"
