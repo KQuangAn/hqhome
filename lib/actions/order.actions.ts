@@ -89,17 +89,41 @@ export async function getOrderSummary() {
 export async function getAllOrders({
   limit = PAGE_SIZE,
   page,
+  query,
+  userId,
 }: {
   limit?: number;
   page: number;
+  query?: string;
+  userId?: string;
 }) {
+  let whereConditions = [];
+  
+  if (query) {
+    whereConditions.push(sql`${orders.id}::text ILIKE ${`%${query}%`}`);
+  }
+  
+  if (userId) {
+    whereConditions.push(eq(orders.userId, userId));
+  }
+
+  const whereClause = whereConditions.length > 0 ? sql`${sql.join(whereConditions, sql` AND `)}` : undefined;
+
   const data = await db.query.orders.findMany({
-    orderBy: [desc(products.createdAt)],
+    where: whereClause,
+    orderBy: [desc(orders.createdAt)],
     limit,
     offset: (page - 1) * limit,
-    with: { user: { columns: { name: true } } },
+    with: { 
+      user: { columns: { name: true, email: true } },
+      orderItems: true 
+    },
   });
-  const dataCount = await db.select({ count: count() }).from(orders);
+  
+  const dataCount = await db
+    .select({ count: count() })
+    .from(orders)
+    .where(whereClause);
 
   return {
     data,
@@ -312,4 +336,11 @@ export async function deliverOrder(orderId: string) {
   } catch (err) {
     return { success: false, message: formatError(err) };
   }
+}
+
+export async function getAllUsers() {
+  return await db.query.users.findMany({
+    columns: { id: true, name: true, email: true },
+    orderBy: [desc(users.createdAt)],
+  });
 }
