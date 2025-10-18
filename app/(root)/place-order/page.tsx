@@ -18,6 +18,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import PlaceOrderForm from './place-order-form'
+import CartPDFExport from '@/components/shared/cart/cart-pdf-export'
 
 export const metadata = {
   title: `Place Order - ${APP_NAME}`,
@@ -96,7 +97,7 @@ export default async function PlaceOrderPage() {
                         <span className="px-2">{item.qty}</span>
                       </TableCell>
                       <TableCell className="text-right">
-                        ${item.price}
+                        {formatCurrency(item.price)}
                       </TableCell>
                     </TableRow>
                   ))}
@@ -127,6 +128,15 @@ export default async function PlaceOrderPage() {
                 <div>Total</div>
                 <div>{formatCurrency(cart.totalPrice)}</div>
               </div>
+              
+              <CartPDFExport
+                cartItems={cart.items}
+                totalPrice={cart.totalPrice}
+                itemsPrice={cart.itemsPrice}
+                shippingPrice={cart.shippingPrice}
+                taxPrice={cart.taxPrice}
+              />
+              
               <PlaceOrderForm />
             </CardContent>
           </Card>

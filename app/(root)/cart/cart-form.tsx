@@ -19,6 +19,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
+import CartPDFExport from '@/components/shared/cart/cart-pdf-export'
 
 export default function CartForm({ cart }: { cart?: Cart }) {
   const router = useRouter()
@@ -123,20 +124,30 @@ export default function CartForm({ cart }: { cart?: Cart }) {
                   Subtotal ({cart.items.reduce((a, c) => a + c.qty, 0)}):
                   {formatCurrency(cart.itemsPrice)}
                 </div>
-                <Button
-                  onClick={() =>
-                    startTransition(() => router.push('/shipping-address'))
-                  }
-                  className="w-full"
-                  disabled={isPending}
-                >
-                  {isPending ? (
-                    <Loader className="animate-spin w-4 h-4" />
-                  ) : (
-                    <ArrowRight className="w-4 h-4" />
-                  )}
-                  Proceed to Checkout
-                </Button>
+                <div className="space-y-2">
+                  <Button
+                    onClick={() =>
+                      startTransition(() => router.push('/shipping-address'))
+                    }
+                    className="w-full"
+                    disabled={isPending}
+                  >
+                    {isPending ? (
+                      <Loader className="animate-spin w-4 h-4" />
+                    ) : (
+                      <ArrowRight className="w-4 h-4" />
+                    )}
+                    Proceed to Checkout
+                  </Button>
+                  
+                  <CartPDFExport
+                    cartItems={cart.items}
+                    totalPrice={cart.totalPrice}
+                    itemsPrice={cart.itemsPrice}
+                    shippingPrice={cart.shippingPrice}
+                    taxPrice={cart.taxPrice}
+                  />
+                </div>
               </CardContent>
             </Card>
           </div>
