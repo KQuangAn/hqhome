@@ -4,34 +4,38 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
+import { useLocale } from '@/context/LocaleContext'
 
-const links = [
-  {
-    title: 'Overview',
-    href: '/admin/overview',
-  },
-  {
-    title: 'Products',
-    href: '/admin/products',
-  },
-  {
-    title: 'Orders',
-    href: '/admin/orders',
-  },
-  {
-    title: 'Users',
-    href: '/admin/users',
-  },
-  {
-    title: 'Settings',
-    href: '/admin/settings',
-  },
-]
 export default function MainNav({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
   const pathname = usePathname()
+  const { t } = useLocale()
+  
+  const links = [
+    {
+      title: t('admin.overview'),
+      href: '/admin/overview',
+    },
+    {
+      title: t('admin.products'),
+      href: '/admin/products',
+    },
+    {
+      title: t('admin.orders'),
+      href: '/admin/orders',
+    },
+    {
+      title: t('admin.users'),
+      href: '/admin/users',
+    },
+    {
+      title: t('admin.settings'),
+      href: '/admin/settings',
+    },
+  ]
+  
   return (
     <nav
       className={cn('flex items-center space-x-4 lg:space-x-6', className)}

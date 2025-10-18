@@ -45,7 +45,7 @@ export const addItemToCart = async (data: CartItem) => {
         sessionCartId: sessionCartId,
         ...calcPrice([item]),
       })
-      revalidatePath(`/product/${product.slug}`)
+      revalidatePath(`/product/${product.id}`)
       return {
         success: true,
         message: 'Item added to cart successfully',
@@ -69,7 +69,7 @@ export const addItemToCart = async (data: CartItem) => {
         })
         .where(eq(carts.id, cart.id))
 
-      revalidatePath(`/product/${product.slug}`)
+      revalidatePath(`/product/${product.id}`)
       return {
         success: true,
         message: `${product.name} ${
@@ -123,7 +123,7 @@ export const removeItemFromCart = async (productId: string) => {
         ...calcPrice(cart.items),
       })
       .where(eq(carts.id, cart.id))
-    revalidatePath(`/product/${product.slug}`)
+    revalidatePath(`/product/${product.id}`)
     return {
       success: true,
       message: `${product.name}  ${

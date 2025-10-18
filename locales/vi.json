@@ -1,0 +1,280 @@
+{
+  "common": {
+    "app_name": "Amazona",
+    "all_rights_reserved": "Tất cả quyền được bảo lưu",
+    "loading": "Đang tải...",
+    "submitting": "Đang gửi...",
+    "submit": "Gửi",
+    "update": "Cập nhật",
+    "delete": "Xóa",
+    "cancel": "Hủy",
+    "continue": "Tiếp tục",
+    "save": "Lưu",
+    "edit": "Chỉnh sửa",
+    "create": "Tạo mới",
+    "search": "Tìm kiếm",
+    "filter": "Lọc",
+    "sort": "Sắp xếp",
+    "view": "Xem",
+    "close": "Đóng",
+    "back": "Quay lại"
+  },
+
+  "navbar": {
+    "floorings": "Gạch ốp lát",
+    "toiletries": "Thiết bị vệ sinh",
+    "kitchen": "Thiết bị bếp",
+    "accessories": "Phụ kiện",
+    "contact": "Liên hệ",
+    "about_us": "Về Hùng Quyên",
+    "cart": "Giỏ hàng"
+  },
+
+  "promo_banner": {
+    "sale": "🎉 GIẢM GIÁ: Giảm đến 50% cho các sản phẩm được chọn!",
+    "free_shipping": "🚚 Miễn phí vận chuyển cho đơn hàng trên 2,000,000 ₫",
+    "deals": "🎁 Ưu đãi trong tháng - Đừng bỏ lỡ!",
+    "new_arrivals": "✨ Sản phẩm mới vừa ra mắt - Mua ngay!"
+  },
+
+  "auth": {
+    "sign_in": "Đăng nhập",
+    "sign_up": "Đăng ký",
+    "sign_out": "Đăng xuất",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "confirm_password": "Xác nhận mật khẩu",
+    "name": "Họ tên",
+    "create_account": "Tạo tài khoản",
+    "already_have_account": "Đã có tài khoản?",
+    "dont_have_account": "Chưa có tài khoản?",
+    "sign_in_with_google": "Đăng nhập với Google",
+    "sign_in_with_email": "Đăng nhập với email",
+    "sign_in_with_credentials": "Đăng nhập bằng tài khoản",
+    "redirecting_to_google": "Đang chuyển đến Google...",
+    "sending_email": "Đang gửi email...",
+    "enter_email": "Nhập email của bạn",
+    "enter_password": "Nhập mật khẩu",
+    "enter_name": "Nhập họ tên"
+  },
+
+  "product": {
+    "best_sellers": "Sản Phẩm Bán Chạy",
+    "newest_arrivals": "Sản phẩm mới nhất",
+    "featured_products": "Sản phẩm nổi bật",
+    "add_to_cart": "Thêm vào giỏ",
+    "out_of_stock": "Hết hàng",
+    "in_stock": "Còn hàng",
+    "price": "Giá",
+    "description": "Mô tả",
+    "category": "Danh mục",
+    "brand": "Thương hiệu",
+    "rating": "Đánh giá",
+    "reviews": "Nhận xét",
+    "write_review": "Viết đánh giá",
+    "no_reviews": "Chưa có đánh giá",
+    "product_not_found": "Không tìm thấy sản phẩm",
+    "search_products": "Tìm kiếm sản phẩm",
+    "view_products": "Xem sản phẩm",
+    "quick_view": "Xem nhanh",
+    "filters": "Bộ lọc",
+    "clear_all": "Xóa tất cả",
+    "no_filters_available": "Không có bộ lọc nào cho danh mục này",
+    "apply_filters": "Áp dụng bộ lọc",
+    "showing_results": "Hiển thị kết quả",
+    "no_products_found": "Không tìm thấy sản phẩm",
+    "adjust_filters": "Thử điều chỉnh bộ lọc để xem thêm kết quả",
+    "active_filters": "Bộ lọc đang áp dụng",
+    "filter_products_description": "Chọn bộ lọc để thu hẹp tìm kiếm sản phẩm",
+    "featured": "Nổi bật",
+    "only": "Chỉ còn",
+    "left": "sản phẩm",
+    "original_price": "Giá gốc",
+    "member_discount": "Ưu đãi thành viên",
+    "view_details": "Xem Chi Tiết",
+    "product_code": "Mã sản phẩm",
+    "hot_seller": "Hot Seller",
+    "trending": "Trending",
+    "new_arrivals": "New Arrivals"
+  },
+
+  "cart": {
+    "shopping_cart": "Giỏ hàng",
+    "cart_is_empty": "Giỏ hàng trống",
+    "go_shopping": "Đi mua sắm",
+    "proceed_to_checkout": "Tiến hành thanh toán",
+    "subtotal": "Tạm tính",
+    "total": "Tổng cộng",
+    "quantity": "Số lượng",
+    "remove": "Xóa",
+    "update_cart": "Cập nhật giỏ hàng"
+  },
+
+  "checkout": {
+    "checkout_steps": {
+      "user_login": "Đăng nhập",
+      "shipping_address": "Địa chỉ giao hàng",
+      "payment_method": "Phương thức thanh toán",
+      "place_order": "Đặt hàng"
+    },
+    "shipping_address": "Địa chỉ giao hàng",
+    "full_name": "Họ và tên",
+    "address": "Địa chỉ",
+    "city": "Thành phố",
+    "postal_code": "Mã bưu điện",
+    "country": "Quốc gia",
+    "enter_full_name": "Nhập họ và tên",
+    "enter_address": "Nhập địa chỉ",
+    "enter_city": "Nhập thành phố",
+    "enter_postal_code": "Nhập mã bưu điện",
+    "enter_country": "Nhập quốc gia",
+    "payment_method": "Phương thức thanh toán",
+    "select_payment_method": "Chọn phương thức thanh toán",
+    "place_order": "Đặt hàng",
+    "order_summary": "Tóm tắt đơn hàng",
+    "shipping": "Phí vận chuyển",
+    "tax": "Thuế",
+    "total_price": "Tổng tiền"
+  },
+
+  "order": {
+    "order_details": "Chi tiết đơn hàng",
+    "order_id": "Mã đơn hàng",
+    "order_date": "Ngày đặt",
+    "order_status": "Trạng thái",
+    "my_orders": "Đơn hàng của tôi",
+    "no_orders": "Chưa có đơn hàng",
+    "order_items": "Sản phẩm",
+    "paid": "Đã thanh toán",
+    "not_paid": "Chưa thanh toán",
+    "delivered": "Đã giao hàng",
+    "not_delivered": "Chưa giao hàng",
+    "payment_status": "Trạng thái thanh toán",
+    "delivery_status": "Trạng thái giao hàng",
+    "stripe_payment_success": "Thanh toán Stripe thành công",
+    "stripe_checkout": "Thanh toán Stripe"
+  },
+
+  "user": {
+    "profile": "Hồ sơ",
+    "customer_profile": "Hồ sơ khách hàng",
+    "orders": "Đơn hàng",
+    "settings": "Cài đặt",
+    "update_profile": "Cập nhật hồ sơ",
+    "my_account": "Tài khoản của tôi",
+    "personal_information": "Thông tin cá nhân",
+    "order_history": "Lịch sử đơn hàng"
+  },
+
+  "admin": {
+    "admin_dashboard": "Bảng điều khiển Admin",
+    "overview": "Tổng quan",
+    "products": "Sản phẩm",
+    "orders": "Đơn hàng",
+    "users": "Người dùng",
+    "settings": "Cài đặt",
+    "create_product": "Tạo sản phẩm",
+    "update_product": "Cập nhật sản phẩm",
+    "update_user": "Cập nhật người dùng",
+    "delete_product": "Xóa sản phẩm",
+    "delete_user": "Xóa người dùng",
+    "delete_order": "Xóa đơn hàng",
+    "admin_products": "Sản phẩm Admin",
+    "admin_orders": "Đơn hàng Admin",
+    "admin_users": "Người dùng Admin",
+    "total_revenue": "Tổng doanh thu",
+    "sales": "Doanh số",
+    "customers": "Khách hàng",
+    "sales_chart": "Biểu đồ doanh số",
+    "recent_sales": "Doanh số gần đây",
+    "deleted_user": "Người dùng đã xóa",
+    "role": "Vai trò",
+    "select_role": "Chọn vai trò",
+    "enter_user_email": "Nhập email người dùng",
+    "enter_user_name": "Nhập tên người dùng"
+  },
+
+  "features": {
+    "free_shipping": "Miễn phí vận chuyển",
+    "free_shipping_desc": "Miễn phí vận chuyển cho đơn hàng trên 2,000,000 ₫",
+    "money_guarantee": "Đảm bảo hoàn tiền",
+    "money_guarantee_desc": "Trong vòng 30 ngày để đổi trả",
+    "flexible_payment": "Thanh toán linh hoạt",
+    "flexible_payment_desc": "Thanh toán bằng nhiều thẻ tín dụng",
+    "support_247": "Hỗ trợ 24/7",
+    "support_247_desc": "Hỗ trợ khách hàng",
+    "deals_of_the_month": "Ưu đãi trong tháng",
+    "deals_description": "Sẵn sàng cho trải nghiệm mua sắm chưa từng có với Ưu đãi trong tháng! Mỗi giao dịch mua đều đi kèm với đặc quyền và ưu đãi độc quyền, biến tháng này thành lễ hội của những lựa chọn thông minh và giao dịch tuyệt vời. Đừng bỏ lỡ! 🎁🛒",
+    "days": "Ngày",
+    "hours": "Giờ",
+    "minutes": "Phút",
+    "seconds": "Giây"
+  },
+
+  "review": {
+    "write_a_review": "Viết đánh giá",
+    "title": "Tiêu đề",
+    "description": "Mô tả",
+    "rating": "Xếp hạng",
+    "enter_title": "Nhập tiêu đề",
+    "enter_description": "Nhập mô tả",
+    "select_rating": "Chọn xếp hạng",
+    "submit_review": "Gửi đánh giá"
+  },
+
+  "messages": {
+    "success": "Thành công",
+    "error": "Lỗi",
+    "confirm_delete": "Bạn có chắc muốn xóa?",
+    "delete_warning": "Hành động này không thể hoàn tác",
+    "item_added_to_cart": "Đã thêm vào giỏ hàng",
+    "item_removed_from_cart": "Đã xóa khỏi giỏ hàng",
+    "profile_updated": "Đã cập nhật hồ sơ",
+    "order_placed": "Đã đặt hàng thành công",
+    "something_went_wrong": "Đã xảy ra lỗi"
+  },
+
+  "placeholders": {
+    "email": "m@example.com",
+    "name": "John Doe",
+    "search": "Tìm kiếm...",
+    "enter_value": "Nhập giá trị",
+    "select_option": "Chọn tùy chọn"
+  },
+
+  "validation": {
+    "required": "Trường này là bắt buộc",
+    "invalid_email": "Email không hợp lệ",
+    "password_too_short": "Mật khẩu quá ngắn",
+    "passwords_dont_match": "Mật khẩu không khớp",
+    "invalid_value": "Giá trị không hợp lệ"
+  },
+
+  "category_banner": {
+    "best_selling": "Sản Phẩm Bán Chạy",
+    "new_arrivals": "Hàng Mới Về",
+    "featured": "Sản Phẩm Nổi Bật"
+  },
+
+  "about": {
+    "title": "Về Hùng Quyên",
+    "subtitle": "Đối tác tin cậy của bạn trong việc cung cấp các sản phẩm chất lượng cao cho ngôi nhà",
+    "our_story": "Câu chuyện của chúng tôi",
+    "story_content": "Hùng Quyên được thành lập với sứ mệnh mang đến những sản phẩm tốt nhất cho ngôi nhà của bạn. Với hơn 10 năm kinh nghiệm trong ngành, chúng tôi tự hào là đối tác tin cậy của hàng nghìn khách hàng trên toàn quốc.",
+    "our_values": "Giá trị cốt lõi",
+    "quality": "Chất lượng",
+    "quality_desc": "Cam kết cung cấp sản phẩm chất lượng cao nhất",
+    "customer_first": "Khách hàng là trên hết",
+    "customer_first_desc": "Luôn đặt nhu cầu khách hàng lên hàng đầu",
+    "excellence": "Xuất sắc",
+    "excellence_desc": "Không ngừng nỗ lực để đạt được sự hoàn hảo",
+    "passion": "Đam mê",
+    "passion_desc": "Yêu thích công việc và sản phẩm của chúng tôi",
+    "years_experience": "Năm kinh nghiệm",
+    "happy_customers": "Khách hàng hài lòng",
+    "products": "Sản phẩm",
+    "our_mission": "Sứ mệnh của chúng tôi",
+    "mission_content": "Sứ mệnh của chúng tôi là mang đến những sản phẩm tốt nhất với giá cả hợp lý, giúp khách hàng xây dựng và trang trí ngôi nhà mơ ước. Chúng tôi cam kết cung cấp dịch vụ khách hàng xuất sắc và luôn đổi mới để đáp ứng nhu cầu thay đổi của thị trường."
+  }
+}
+

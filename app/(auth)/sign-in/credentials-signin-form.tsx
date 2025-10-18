@@ -5,6 +5,7 @@ import { useFormState, useFormStatus } from 'react-dom'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Alert, AlertDescription } from '@/components/ui/alert'
 import { signInWithCredentials } from '@/lib/actions/user.actions'
 import { signInDefaultValues } from '@/lib/constants'
 import Link from 'next/link'
@@ -57,15 +58,23 @@ export default function CredentialsSignInForm() {
         </div>
 
         {data && !data.success && (
-          <div className="text-center text-destructive">{data.message}</div>
+          <Alert variant="destructive">
+            <AlertDescription>{data.message}</AlertDescription>
+          </Alert>
         )}
         {!data && (
-          <div className="text-center text-destructive">
-            Unknown error happened.{' '}
-            <Button onClick={() => window.location.reload()}>
-              Please reload
-            </Button>
-          </div>
+          <Alert variant="destructive">
+            <AlertDescription>
+              Unknown error happened.{' '}
+              <Button 
+                variant="link" 
+                className="p-0 h-auto text-destructive underline"
+                onClick={() => window.location.reload()}
+              >
+                Please reload
+              </Button>
+            </AlertDescription>
+          </Alert>
         )}
 
         <div className="text-sm text-center text-muted-foreground">

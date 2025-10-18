@@ -128,8 +128,11 @@ export default function ProductForm({
                       className="pl-8"
                       {...field}
                     />
-                    <button
+                    <Button
                       type="button"
+                      variant="outline"
+                      size="sm"
+                      className="absolute right-1 top-1/2 -translate-y-1/2"
                       onClick={() => {
                         form.setValue(
                           'slug',
@@ -138,7 +141,7 @@ export default function ProductForm({
                       }}
                     >
                       Generate
-                    </button>
+                    </Button>
                   </div>
                 </FormControl>
 
@@ -150,12 +153,12 @@ export default function ProductForm({
         <div className="flex flex-col gap-5 md:flex-row">
           <FormField
             control={form.control}
-            name="category"
+            name="categoryId"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Category</FormLabel>
+                <FormLabel>Category ID</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter category" {...field} />
+                  <Input placeholder="Enter category ID (UUID)" {...field} value={field.value || ''} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -164,12 +167,12 @@ export default function ProductForm({
 
           <FormField
             control={form.control}
-            name="brand"
+            name="brandId"
             render={({ field }: { field: any }) => (
               <FormItem className="w-full">
-                <FormLabel>Brand</FormLabel>
+                <FormLabel>Brand ID</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter product brand" {...field} />
+                  <Input placeholder="Enter brand ID (UUID)" {...field} value={field.value || ''} />
                 </FormControl>
 
                 <FormMessage />
@@ -183,9 +186,9 @@ export default function ProductForm({
             name="price"
             render={({ field }: { field: any }) => (
               <FormItem className="w-full">
-                <FormLabel>Price</FormLabel>
+                <FormLabel>Current Price</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter product price" {...field} />
+                  <Input placeholder="Enter current price" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -202,6 +205,43 @@ export default function ProductForm({
                     type="number"
                     placeholder="Enter product stock"
                     {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="flex flex-col gap-5 md:flex-row">
+          <FormField
+            control={form.control}
+            name="basePrice"
+            render={({ field }: { field: any }) => (
+              <FormItem className="w-full">
+                <FormLabel>Base Price (Original Price)</FormLabel>
+                <FormControl>
+                  <Input 
+                    type="number"
+                    placeholder="Enter base price (optional)" 
+                    {...field} 
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="discountPrice"
+            render={({ field }: { field: any }) => (
+              <FormItem className="w-full">
+                <FormLabel>Discount Price (Member Price)</FormLabel>
+                <FormControl>
+                  <Input 
+                    type="number"
+                    placeholder="Enter discount price (optional)" 
+                    {...field} 
                   />
                 </FormControl>
                 <FormMessage />

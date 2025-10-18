@@ -191,7 +191,7 @@ export default function OrderDetailsForm({
                     <TableRow key={item.slug}>
                       <TableCell>
                         <Link
-                          href={`/product/${item.slug}`}
+                          href={`/product/${item.productId}`}
                           className="flex items-center"
                         >
                           <Image

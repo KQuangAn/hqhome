@@ -80,7 +80,7 @@ export default async function PlaceOrderPage() {
                     <TableRow key={item.slug}>
                       <TableCell>
                         <Link
-                          href={`/product/${item.slug}`}
+                          href={`/product/${item.productId}`}
                           className="flex items-center"
                         >
                           <Image

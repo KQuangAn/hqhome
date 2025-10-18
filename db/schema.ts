@@ -80,6 +80,48 @@ export const verificationTokens = pgTable(
   })
 )
 
+// CATEGORIES
+export const categories = pgTable('category', {
+  id: uuid('id').defaultRandom().primaryKey().notNull(),
+  name: text('name').notNull(),
+  parentId: uuid('parentId'),
+  slug: text('slug').notNull(),
+  createdAt: timestamp('createdAt').defaultNow().notNull(),
+}, (table) => {
+  return {
+    categorySlugIdx: uniqueIndex('category_slug_idx').on(table.slug),
+  }
+})
+
+// Self-referencing relation for categories
+export const categoriesRelations = relations(categories, ({ one, many }) => ({
+  parent: one(categories, {
+    fields: [categories.parentId],
+    references: [categories.id],
+    relationName: 'subcategories',
+  }),
+  children: many(categories, {
+    relationName: 'subcategories',
+  }),
+  products: many(products),
+}))
+
+// BRANDS
+export const brands = pgTable('brand', {
+  id: uuid('id').defaultRandom().primaryKey().notNull(),
+  name: text('name').notNull(),
+  slug: text('slug').notNull(),
+  createdAt: timestamp('createdAt').defaultNow().notNull(),
+}, (table) => {
+  return {
+    brandSlugIdx: uniqueIndex('brand_slug_idx').on(table.slug),
+  }
+})
+
+export const brandsRelations = relations(brands, ({ many }) => ({
+  products: many(products),
+}))
+
 // PRODUCTS
 export const products = pgTable(
   'product',
@@ -87,49 +129,36 @@ export const products = pgTable(
     id: uuid('id').defaultRandom().primaryKey().notNull(),
     name: text('name').notNull(),
     slug: text('slug').notNull(),
-    category: text('category').notNull(),
+    sku: text('sku').notNull(),
+    categoryId: uuid('categoryId').references(() => categories.id, { onDelete: 'set null' }),
+    brandId: uuid('brandId').references(() => brands.id, { onDelete: 'set null' }),
     images: text('images').array().notNull(),
-    brand: text('brand').notNull(),
     description: text('description').notNull(),
     stock: integer('stock').notNull(),
     price: numeric('price', { precision: 12, scale: 2 }).notNull().default('0'),
-    rating: numeric('rating', { precision: 3, scale: 2 })
-      .notNull()
-      .default('0'),
-    numReviews: integer('numReviews').notNull().default(0),
+    basePrice: numeric('baseprice', { precision: 12, scale: 2 }),
+    discountPrice: numeric('discountprice', { precision: 12, scale: 2 }),
     isFeatured: boolean('isFeatured').default(false).notNull(),
     banner: text('banner'),
+    attributes: json('attributes'),
     createdAt: timestamp('createdAt').defaultNow().notNull(),
   },
   (table) => {
     return {
       productSlugIdx: uniqueIndex('product_slug_idx').on(table.slug),
+      productSkuIdx: uniqueIndex('product_sku_idx').on(table.sku),
     }
   }
 )
 
-export const reviews = pgTable('reviews', {
-  id: uuid('id').defaultRandom().primaryKey().notNull(),
-  userId: uuid('userId')
-    .notNull()
-    .references(() => users.id, { onDelete: 'cascade' }),
-  productId: uuid('productId')
-    .notNull()
-    .references(() => products.id, { onDelete: 'cascade' }),
-  rating: integer('rating').notNull(),
-  title: text('title').notNull(),
-  description: text('slug').notNull(),
-  isVerifiedPurchase: boolean('isVerifiedPurchase').notNull().default(true),
-  createdAt: timestamp('createdAt').notNull().defaultNow(),
-})
-export const productRelations = relations(products, ({ many }) => ({
-  reviews: many(reviews),
-}))
-export const reviewsRelations = relations(reviews, ({ one }) => ({
-  user: one(users, { fields: [reviews.userId], references: [users.id] }),
-  product: one(products, {
-    fields: [reviews.productId],
-    references: [products.id],
+export const productRelations = relations(products, ({ one }) => ({
+  category: one(categories, {
+    fields: [products.categoryId],
+    references: [categories.id],
+  }),
+  brand: one(brands, {
+    fields: [products.brandId],
+    references: [brands.id],
   }),
 }))
 
@@ -204,5 +233,9 @@ export const orderItemsRelations = relations(orderItems, ({ one }) => ({
   order: one(orders, {
     fields: [orderItems.orderId],
     references: [orders.id],
+  }),
+  product: one(products, {
+    fields: [orderItems.productId],
+    references: [products.id],
   }),
 }))

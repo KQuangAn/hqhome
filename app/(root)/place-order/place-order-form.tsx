@@ -4,6 +4,7 @@ import { Check, Loader } from 'lucide-react'
 import { useFormState, useFormStatus } from 'react-dom'
 
 import { Button } from '@/components/ui/button'
+import { Alert, AlertDescription } from '@/components/ui/alert'
 import { createOrder } from '@/lib/actions/order.actions'
 
 export default function PlaceOrderForm() {
@@ -27,9 +28,13 @@ export default function PlaceOrderForm() {
   }
 
   return (
-    <form action={action} className="w-full">
+    <form action={action} className="w-full space-y-4">
       <PlaceOrderButton />
-      {!data.success && <p className="text-destructive py-4">{data.message}</p>}
+      {!data.success && (
+        <Alert variant="destructive">
+          <AlertDescription>{data.message}</AlertDescription>
+        </Alert>
+      )}
     </form>
   )
 }

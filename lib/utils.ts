@@ -48,17 +48,17 @@ export const formatDateTime = (dateString: Date) => {
   }
 }
 
-const CURRENCY_FORMATTER = new Intl.NumberFormat('en-US', {
-  currency: 'USD',
-  style: 'currency',
-  minimumFractionDigits: 2,
+const CURRENCY_FORMATTER = new Intl.NumberFormat('vi-VN', {
+  style: 'decimal',
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
 })
 
 export function formatCurrency(amount: number | string | null) {
   if (typeof amount === 'number') {
-    return CURRENCY_FORMATTER.format(amount)
+    return `${CURRENCY_FORMATTER.format(amount)} ₫`
   } else if (typeof amount === 'string') {
-    return CURRENCY_FORMATTER.format(Number(amount))
+    return `${CURRENCY_FORMATTER.format(Number(amount))} ₫`
   } else {
     return 'NaN'
   }

@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -7,16 +9,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { getAllCategories } from '@/lib/actions/product.actions'
 import { SearchIcon } from 'lucide-react'
+import { useState, useEffect } from 'react'
 
-export default async function Search() {
-  const categories = await getAllCategories()
+interface SearchProps {
+  categories: Array<{ name: string; slug: string }>
+}
+
+export default function Search({ categories }: SearchProps) {
+  const [selectedCategory, setSelectedCategory] = useState('all')
 
   return (
     <form action="/search" method="GET">
       <div className="flex w-full max-w-sm items-center space-x-2">
-        <Select name="category">
+        <Select name="category" value={selectedCategory} onValueChange={setSelectedCategory}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="All" />
           </SelectTrigger>
@@ -24,8 +30,8 @@ export default async function Search() {
             <SelectItem key={'All'} value={'all'}>
               All
             </SelectItem>
-            {categories.map((category: { name: string }) => (
-              <SelectItem key={category.name} value={category.name}>
+            {categories.map((category) => (
+              <SelectItem key={category.name} value={category.slug}>
                 {category.name}
               </SelectItem>
             ))}
@@ -38,7 +44,7 @@ export default async function Search() {
           placeholder="Search..."
           className="md:w-[100px] lg:w-[300px]"
         />
-        <Button>
+        <Button type="submit">
           <SearchIcon />
         </Button>
       </div>

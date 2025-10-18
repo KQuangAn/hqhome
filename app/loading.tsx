@@ -1,9 +1,11 @@
+import { Skeleton } from '@/components/ui/skeleton'
+
 const Loading = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen ">
-      <div className="p-6 rounded-lg shadow-md w-1/3 text-center">
-        Loading...
-      </div>
+    <div className="flex flex-col items-center justify-center min-h-screen space-y-4">
+      <Skeleton className="h-8 w-32" />
+      <Skeleton className="h-4 w-48" />
+      <Skeleton className="h-4 w-40" />
     </div>
   )
 }

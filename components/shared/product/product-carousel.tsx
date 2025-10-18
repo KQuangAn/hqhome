@@ -29,7 +29,7 @@ export default function ProductCarousel({ data }: { data: Product[] }) {
       <CarouselContent>
         {data.map((product: Product) => (
           <CarouselItem key={product.id}>
-            <Link href={`/product/${product.slug}`}>
+            <Link href={`/product/${product.id}`}>
               <div className="relative   mx-auto  ">
                 <Image
                   alt={product.name}

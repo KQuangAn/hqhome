@@ -7,15 +7,10 @@ const ProductPrice = ({
   value: number
   className?: string
 }) => {
-  const stringValue = value.toString()
-  const [intValue, floatValue] = stringValue.includes('.')
-    ? stringValue.split('.')
-    : [stringValue, '']
+  const formattedValue = new Intl.NumberFormat('vi-VN').format(value)
   return (
     <p className={cn('text-2xl', className)}>
-      <span className="text-xs align-super">$</span>
-      {intValue}
-      <span className="text-xs align-super">{floatValue}</span>
+      {formattedValue} <span className="text-xs align-super">₫</span>
     </p>
   )
 }

@@ -5,23 +5,22 @@ import { getAllCategories, getAllProducts } from '@/lib/actions/product.actions'
 import { APP_NAME } from '@/lib/constants'
 import Link from 'next/link'
 
-const sortOrders = ['newest', 'lowest', 'highest', 'rating']
+const sortOrders = ['newest', 'lowest', 'highest']
 const prices = [
   {
-    name: '$1 to $100',
-    value: '1-100',
+    name: '50,000 ₫ to 2,000,000 ₫',
+    value: '50000-2000000',
   },
   {
-    name: '$101 to $200',
-    value: '101-200',
+    name: '2,000,000 ₫ to 5,000,000 ₫',
+    value: '2000000-5000000',
   },
   {
-    name: '$201 to $1000',
-    value: '201-1000',
+    name: '5,000,000 ₫ to 20,000,000 ₫',
+    value: '5000000-20000000',
   },
 ]
 
-const ratings = [4, 3, 2, 1]
 
 export async function generateMetadata(
   props: {
@@ -29,7 +28,6 @@ export async function generateMetadata(
       q: string
       category: string
       price: string
-      rating: string
       sort: string
       page: string
     }>
@@ -41,22 +39,19 @@ export async function generateMetadata(
     q = 'all',
     category = 'all',
     price = 'all',
-    rating = 'all'
+    sort = 'newest'
   } = searchParams;
 
   if (
     (q !== 'all' && q !== '') ||
     category !== 'all' ||
-    rating !== 'all' ||
     price !== 'all'
   ) {
     return {
       title: `Search ${q !== 'all' ? q : ''}
                  ${category !== 'all' ? ` : Category ${category}` : ''}
                  ${price !== 'all' ? ` : Price ${price}` : ''}
-                 ${
-                   rating !== 'all' ? ` : Rating ${rating}` : ''
-                 } - ${APP_NAME}`,
+ - ${APP_NAME}`,
     }
   } else {
     return {
@@ -71,7 +66,6 @@ export default async function SearchPage(
       q: string
       category: string
       price: string
-      rating: string
       sort: string
       page: string
     }>
@@ -83,7 +77,6 @@ export default async function SearchPage(
     q = 'all',
     category = 'all',
     price = 'all',
-    rating = 'all',
     sort = 'newest',
     page = '1'
   } = searchParams;
@@ -92,19 +85,16 @@ export default async function SearchPage(
     c,
     s,
     p,
-    r,
     pg,
   }: {
     c?: string
     s?: string
     p?: string
-    r?: string
     pg?: string
   }) => {
-    const params = { q, category, price, rating, sort, page }
+    const params = { q, category, price, sort, page }
     if (c) params.category = c
     if (p) params.price = p
-    if (r) params.rating = r
     if (pg) params.page = pg
     if (s) params.sort = s
     return `/search?${new URLSearchParams(params).toString()}`
@@ -114,7 +104,6 @@ export default async function SearchPage(
     category,
     query: q,
     price,
-    rating,
     page: Number(page),
     sort,
   })
@@ -169,29 +158,6 @@ export default async function SearchPage(
             ))}
           </ul>
         </div>
-        <div>
-          <div className="text-xl pt-3">Customer Review</div>
-          <ul>
-            <li>
-              <Link
-                href={getFilterUrl({ r: 'all' })}
-                className={`  ${'all' === rating && 'text-primary'}`}
-              >
-                Any
-              </Link>
-            </li>
-            {ratings.map((r) => (
-              <li key={r}>
-                <Link
-                  href={getFilterUrl({ r: `${r}` })}
-                  className={`${r.toString() === rating && 'text-primary'}`}
-                >
-                  {`${r} stars & up`}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
       <div className="md:col-span-4 space-y-4">
         <div className="flex-between flex-col md:flex-row my-4">
@@ -202,11 +168,9 @@ export default async function SearchPage(
               category !== '' &&
               '   Category : ' + category}
             {price !== 'all' && '    Price: ' + price}
-            {rating !== 'all' && '    Rating: ' + rating + ' & up'}
             &nbsp;
             {(q !== 'all' && q !== '') ||
             (category !== 'all' && category !== '') ||
-            rating !== 'all' ||
             price !== 'all' ? (
               <Button variant={'link'} asChild>
                 <Link href="/search">Clear</Link>

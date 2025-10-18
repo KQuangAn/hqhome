@@ -1,0 +1,285 @@
+{
+  "common": {
+    "app_name": "Amazona",
+    "all_rights_reserved": "All Rights reserved",
+    "loading": "Loading...",
+    "submitting": "Submitting...",
+    "submit": "Submit",
+    "update": "Update",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "save": "Save",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "view": "View",
+    "close": "Close",
+    "back": "Back"
+  },
+
+  "navbar": {
+    "home": "Home",
+    "shop": "Shop",
+    "cart": "Cart",
+    "orders": "Orders",
+    "profile": "Profile",
+    "search_products": "Search Products",
+    "floorings": "Floorings",
+    "toiletries": "Toiletries",
+    "kitchen": "Kitchen",
+    "accessories": "Accessories",
+    "contact": "Contact",
+    "about_us": "About Us"
+  },
+
+  "promo_banner": {
+    "sale": "🎉 SALE: Up to 50% off on selected items!",
+    "free_shipping": "🚚 Free shipping on orders over 2,000,000 ₫",
+    "deals": "🎁 Deals of the Month - Don't miss out!",
+    "new_arrivals": "✨ New arrivals just dropped - Shop now!"
+  },
+
+  "auth": {
+    "sign_in": "Sign In",
+    "sign_up": "Sign Up",
+    "sign_out": "Sign Out",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "name": "Name",
+    "create_account": "Create Account",
+    "already_have_account": "Already have an account?",
+    "dont_have_account": "Don't have an account?",
+    "sign_in_with_google": "Sign In with Google",
+    "sign_in_with_email": "Sign In with email",
+    "sign_in_with_credentials": "Sign In with credentials",
+    "redirecting_to_google": "Redirecting to Google...",
+    "sending_email": "Sending email...",
+    "enter_email": "Enter your email",
+    "enter_password": "Enter password",
+    "enter_name": "Enter name"
+  },
+
+  "product": {
+    "best_sellers": "Best Sellers",
+    "newest_arrivals": "Newest Arrivals",
+    "featured_products": "Featured Products",
+    "add_to_cart": "Add to Cart",
+    "out_of_stock": "Out of Stock",
+    "in_stock": "In Stock",
+    "price": "Price",
+    "description": "Description",
+    "category": "Category",
+    "brand": "Brand",
+    "rating": "Rating",
+    "reviews": "Reviews",
+    "write_review": "Write a Review",
+    "no_reviews": "No reviews yet",
+    "product_not_found": "Product not found",
+    "search_products": "Search Products",
+    "view_products": "View products",
+    "quick_view": "Quick View",
+    "filters": "Filters",
+    "clear_all": "Clear All",
+    "no_filters_available": "No filters available for this category",
+    "apply_filters": "Apply Filters",
+    "showing_results": "Showing results",
+    "no_products_found": "No products found",
+    "adjust_filters": "Try adjusting your filters to see more results",
+    "active_filters": "Active Filters",
+    "filter_products_description": "Select filters to narrow down your product search",
+    "featured": "Featured",
+    "only": "Only",
+    "left": "left",
+    "original_price": "Original Price",
+    "member_discount": "Member Discount",
+    "view_details": "View Details",
+    "product_code": "Product Code",
+    "hot_seller": "Hot Seller",
+    "trending": "Trending",
+    "new_arrivals": "New Arrivals"
+  },
+
+  "cart": {
+    "shopping_cart": "Shopping Cart",
+    "cart_is_empty": "Cart is empty",
+    "go_shopping": "Go Shopping",
+    "proceed_to_checkout": "Proceed to Checkout",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "quantity": "Quantity",
+    "remove": "Remove",
+    "update_cart": "Update Cart"
+  },
+
+  "checkout": {
+    "checkout_steps": {
+      "user_login": "User Login",
+      "shipping_address": "Shipping Address",
+      "payment_method": "Payment Method",
+      "place_order": "Place Order"
+    },
+    "shipping_address": "Shipping Address",
+    "full_name": "Full Name",
+    "address": "Address",
+    "city": "City",
+    "postal_code": "Postal Code",
+    "country": "Country",
+    "enter_full_name": "Enter full name",
+    "enter_address": "Enter address",
+    "enter_city": "Enter city",
+    "enter_postal_code": "Enter postal code",
+    "enter_country": "Enter country",
+    "payment_method": "Payment Method",
+    "select_payment_method": "Select payment method",
+    "place_order": "Place Order",
+    "order_summary": "Order Summary",
+    "shipping": "Shipping",
+    "tax": "Tax",
+    "total_price": "Total Price"
+  },
+
+  "order": {
+    "order_details": "Order Details",
+    "order_id": "Order ID",
+    "order_date": "Order Date",
+    "order_status": "Order Status",
+    "my_orders": "My Orders",
+    "no_orders": "No orders yet",
+    "order_items": "Order Items",
+    "paid": "Paid",
+    "not_paid": "Not Paid",
+    "delivered": "Delivered",
+    "not_delivered": "Not Delivered",
+    "payment_status": "Payment Status",
+    "delivery_status": "Delivery Status",
+    "stripe_payment_success": "Stripe Payment Success",
+    "stripe_checkout": "Stripe Checkout"
+  },
+
+  "user": {
+    "profile": "Profile",
+    "customer_profile": "Customer Profile",
+    "orders": "Orders",
+    "settings": "Settings",
+    "update_profile": "Update Profile",
+    "my_account": "My Account",
+    "personal_information": "Personal Information",
+    "order_history": "Order History"
+  },
+
+  "admin": {
+    "admin_dashboard": "Admin Dashboard",
+    "overview": "Overview",
+    "products": "Products",
+    "orders": "Orders",
+    "users": "Users",
+    "settings": "Settings",
+    "create_product": "Create Product",
+    "update_product": "Update Product",
+    "update_user": "Update User",
+    "delete_product": "Delete Product",
+    "delete_user": "Delete User",
+    "delete_order": "Delete Order",
+    "admin_products": "Admin Products",
+    "admin_orders": "Admin Orders",
+    "admin_users": "Admin Users",
+    "total_revenue": "Total Revenue",
+    "sales": "Sales",
+    "customers": "Customers",
+    "sales_chart": "Sales Chart",
+    "recent_sales": "Recent Sales",
+    "deleted_user": "Deleted User",
+    "role": "Role",
+    "select_role": "Select a role",
+    "enter_user_email": "Enter user email",
+    "enter_user_name": "Enter user name"
+  },
+
+  "features": {
+    "free_shipping": "Free Shipping",
+    "free_shipping_desc": "Free shipping for order above 2,000,000 ₫",
+    "money_guarantee": "Money Guarantee",
+    "money_guarantee_desc": "Within 30 days for an exchange",
+    "flexible_payment": "Flexible Payment",
+    "flexible_payment_desc": "Pay with multiple credit cards",
+    "support_247": "24/7 Support",
+    "support_247_desc": "Support customers",
+    "deals_of_the_month": "Deals of the Month",
+    "deals_description": "Get ready for a shopping experience like never before with our Deals of the Month! Every purchase comes with exclusive perks and offers, making this month a celebration of savvy choices and amazing deals. Don't miss out! 🎁🛒",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds"
+  },
+
+  "review": {
+    "write_a_review": "Write a review",
+    "title": "Title",
+    "description": "Description",
+    "rating": "Rating",
+    "enter_title": "Enter title",
+    "enter_description": "Enter description",
+    "select_rating": "Select a rating",
+    "submit_review": "Submit Review"
+  },
+
+  "messages": {
+    "success": "Success",
+    "error": "Error",
+    "confirm_delete": "Are you sure you want to delete?",
+    "delete_warning": "This action cannot be undone",
+    "item_added_to_cart": "Item added to cart",
+    "item_removed_from_cart": "Item removed from cart",
+    "profile_updated": "Profile updated",
+    "order_placed": "Order placed successfully",
+    "something_went_wrong": "Something went wrong"
+  },
+
+  "placeholders": {
+    "email": "m@example.com",
+    "name": "John Doe",
+    "search": "Search...",
+    "enter_value": "Enter value",
+    "select_option": "Select option"
+  },
+
+  "validation": {
+    "required": "This field is required",
+    "invalid_email": "Invalid email",
+    "password_too_short": "Password is too short",
+    "passwords_dont_match": "Passwords don't match",
+    "invalid_value": "Invalid value"
+  },
+
+  "category_banner": {
+    "best_selling": "Best Selling",
+    "new_arrivals": "New Arrivals",
+    "featured": "Featured Products"
+  },
+
+  "about": {
+    "title": "About Hung Quyen",
+    "subtitle": "Your trusted partner in providing high-quality products for your home",
+    "our_story": "Our Story",
+    "story_content": "Hung Quyen was founded with the mission of bringing the best products to your home. With over 10 years of experience in the industry, we are proud to be the trusted partner of thousands of customers nationwide.",
+    "our_values": "Our Core Values",
+    "quality": "Quality",
+    "quality_desc": "Committed to providing the highest quality products",
+    "customer_first": "Customer First",
+    "customer_first_desc": "Always putting customer needs first",
+    "excellence": "Excellence",
+    "excellence_desc": "Constantly striving for perfection",
+    "passion": "Passion",
+    "passion_desc": "Loving our work and products",
+    "years_experience": "Years of Experience",
+    "happy_customers": "Happy Customers",
+    "products": "Products",
+    "our_mission": "Our Mission",
+    "mission_content": "Our mission is to bring the best products at reasonable prices, helping customers build and decorate their dream homes. We are committed to providing excellent customer service and constantly innovating to meet the changing needs of the market."
+  }
+}
+

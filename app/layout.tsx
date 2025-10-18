@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 import { Toaster } from '@/components/ui/toaster'
 import React from 'react'
 import { ThemeProvider } from '@/components/shared/theme-provider'
+import { LocaleProvider } from '@/context/LocaleContext'
 import { APP_DESCRIPTION, APP_NAME } from '@/lib/constants'
 
 const fontSans = FontSans({
@@ -33,12 +34,14 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
-          {children}
-          <Toaster />
+          <LocaleProvider>
+            {children}
+            <Toaster />
+          </LocaleProvider>
         </ThemeProvider>
       </body>
     </html>
